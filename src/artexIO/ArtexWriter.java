@@ -11,8 +11,7 @@ public class ArtexWriter {
 
     private String fileName;
     private Face[] faces;
-//    private int vertexCounter;
-    public static final String FILE_EXTENSION = ".obj";
+    static final String FILE_EXTENSION = ".obj";
 
     public ArtexWriter(String fileName, Face... faces){
         this.faces = faces;
