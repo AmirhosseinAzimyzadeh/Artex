@@ -1,6 +1,8 @@
 package artexCore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Face class create a page with it's vertices
  * each faces or 3D Objects have one anchor , anchors used to rotate,
@@ -36,6 +38,10 @@ public class Face {
             return vertices.get(index);
         else
             return null;
+    }
+
+    public int size(){
+        return vertices.size();
     }
 
     public void setVertices(ArrayList<Vertex> vertices) {
