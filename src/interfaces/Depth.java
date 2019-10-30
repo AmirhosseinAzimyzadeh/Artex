@@ -1,7 +1,7 @@
 package interfaces;
 
 public interface Depth<T> {
-    public T depthX(float amount);
-    public T depthY(float amount);
-    public T depthZ(float amount);
+    T depthX(float amount);
+    T depthY(float amount);
+    T depthZ(float amount);
 }

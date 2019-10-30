@@ -1,7 +1,7 @@
 package interfaces;
 
 public interface Move<T> {
-    public T moveX(float amount);
-    public T moveY(float amount);
-    public T moveZ(float amount);
+    T moveX(float amount);
+    T moveY(float amount);
+    T moveZ(float amount);
 }
