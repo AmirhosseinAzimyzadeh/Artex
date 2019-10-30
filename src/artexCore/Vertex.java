@@ -54,7 +54,7 @@ public class Vertex {
         return id;
     }
     /**
-     * only use when writing to .obj file or reading from file
+     * only use when reading from .obj file or reading from file
      * */
     public void setId(int id) {
         this.id = id;
