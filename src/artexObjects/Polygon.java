@@ -2,22 +2,21 @@ package artexObjects;
 
 import artexCore.Face;
 import artexCore.Vertex;
-import utility.Utility;
+import utility.GeoMath;
+import utility.Statics;
 import interfaces.Move;
 import interfaces.Rotate;
-import interfaces.Scale;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Polygon {
     private Vertex anchor;
     private Face face;
-    private float radius;
-    private int sides;
 
     private Polygon(Polygon.Builder builder){
         this.anchor = builder.anchor;
         this.face = builder.face;
-        this.sides =builder.sides;
     }
 
     public Vertex getAnchor() {
@@ -28,69 +27,64 @@ public class Polygon {
         return face;
     }
 
-    public int getNumberOfSides() {
-        return sides;
-    }
-
-    public static class Builder implements Move<Polygon.Builder>, Rotate<Polygon.Builder>,
-            Scale<Polygon.Builder> {
+    public static class Builder implements Move<Polygon.Builder>, Rotate<Polygon.Builder>{
         private Vertex anchor;
         private Face face;
         private float radius;
         private int sides;
 
-        public Builder(Vertex anchor, int sides, float radius){
-            this.anchor = anchor;
-            this.sides = sides;
-            this.radius = radius;
-        }
 
         public Builder(int sides, float radius){
-            this.anchor = Utility.ORIGIN_VERTEX;
+            this.anchor = Statics.ORIGIN_VERTEX;
             this.sides = sides;
             this.radius = radius;
+            this.face = buildFace();
         }
 
+        private Face buildFace() {
+            ArrayList<Vertex> vertices = new ArrayList<>();
+            Collections.addAll(vertices,GeoMath.regularPolygonVertices(sides,radius));
+            return new Face(vertices);
+        }
+
+        public Builder setAnchor(Vertex anchor){
+            this.anchor = anchor;
+            return this;
+        }
         @Override
         public Builder moveX(float amount) {
             //TODO
-            return null;
+            return this;
         }
 
         @Override
         public Builder moveY(float amount) {
             //TODO
-            return null;
+            return this;
         }
 
         @Override
         public Builder moveZ(float amount) {
             //TODO
-            return null;
+            return this;
         }
 
         @Override
         public Builder rotateX(float degree) {
             //TODO
-            return null;
+            return this;
         }
 
         @Override
         public Builder rotateY(float degree) {
             //TODO
-            return null;
+            return this;
         }
 
         @Override
         public Builder rotateZ(float degree) {
             //TODO
-            return null;
-        }
-
-        @Override
-        public Builder resize(float amount) {
-            //TODO
-            return null;
+            return this;
         }
 
         public Polygon build(){
