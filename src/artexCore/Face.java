@@ -15,6 +15,7 @@ import java.util.Arrays;
 public class Face {
     private ArrayList<Vertex> vertices;
     private Vertex anchor;
+    private String name;
 
     public Face(ArrayList<Vertex> vertices, Vertex anchor) {
         this.vertices = vertices;
@@ -54,6 +55,14 @@ public class Face {
 
     public void setAnchor(Vertex anchor) {
         this.anchor = anchor;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
