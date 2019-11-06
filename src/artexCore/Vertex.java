@@ -53,6 +53,18 @@ public class Vertex {
     public int getId() {
         return id;
     }
+
+    public void addX(float amount){
+        this.x += amount;
+    }
+
+    public void addY(float amount){
+        this.y += amount;
+    }
+
+    public void addZ(float amount){
+        this.z += amount;
+    }
     /**
      * only use when reading from .obj file or reading from file
      * */
