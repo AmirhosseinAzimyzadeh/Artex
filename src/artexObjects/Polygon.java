@@ -86,6 +86,10 @@ public class Polygon {
             return this;
         }
 
+        public Builder move(float amountX, float amountY, float amountZ){
+            return this.moveX(amountX).moveY(amountY).moveZ(amountZ);
+        }
+
         @Override
         public Builder rotateX(float degree) {
             this.face = new Face(this.anchor, GeoMath.rotateXFace(this.face, this.anchor));
