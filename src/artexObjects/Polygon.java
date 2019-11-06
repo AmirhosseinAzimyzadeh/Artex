@@ -8,7 +8,13 @@ import interfaces.Move;
 import interfaces.Rotate;
 import java.util.ArrayList;
 import java.util.Collections;
-
+/**
+ * Polygon class creat simple 2D shape (regular-polygon)
+ * @see GeoMath
+ * you can also creat circle by increasing "side" value
+ *
+ * @author Amirhossein Azimyzadeh
+ * */
 
 public class Polygon {
     private Vertex anchor;
@@ -51,21 +57,31 @@ public class Polygon {
             this.anchor = anchor;
             return this;
         }
+
         @Override
         public Builder moveX(float amount) {
-            //TODO
+            for (Vertex vertex : this.face.getVertices()) {
+                vertex.addX(amount);
+            }
+            this.anchor.addX(amount);
             return this;
         }
 
         @Override
         public Builder moveY(float amount) {
-            //TODO
+            for (Vertex vertex : this.face.getVertices()) {
+                vertex.addY(amount);
+            }
+            this.anchor.addY(amount);
             return this;
         }
 
         @Override
         public Builder moveZ(float amount) {
-            //TODO
+            for (Vertex vertex : this.face.getVertices()) {
+                vertex.addZ(amount);
+            }
+            this.anchor.addZ(amount);
             return this;
         }
 
