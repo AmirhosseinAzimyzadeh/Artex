@@ -29,16 +29,19 @@ public class GeoMath {
 
     public static Vertex[] rotateXFace(Face face, Vertex anchor){
         Vertex[] result = new Vertex[face.size()];
+        //TODO
         return result;
     }
 
     public static Vertex[] rotateYFace(Face face, Vertex anchor){
         Vertex[] result = new Vertex[face.size()];
+        //TODO
         return result;
     }
 
     public static Vertex[] rotateZFace(Face face, Vertex anchor){
         Vertex[] result = new Vertex[face.size()];
+        //TODO
         return result;
     }
 
