@@ -8,6 +8,7 @@ import interfaces.Move;
 import interfaces.Rotate;
 import java.util.ArrayList;
 import java.util.Collections;
+
 /**
  * Polygon class creat simple 2D shape (regular-polygon)
  * @see GeoMath
@@ -87,19 +88,19 @@ public class Polygon {
 
         @Override
         public Builder rotateX(float degree) {
-            //TODO
+            this.face = new Face(this.anchor, GeoMath.rotateXFace(this.face, this.anchor));
             return this;
         }
 
         @Override
         public Builder rotateY(float degree) {
-            //TODO
+            this.face = new Face(this.anchor, GeoMath.rotateYFace(this.face, this.anchor));
             return this;
         }
 
         @Override
         public Builder rotateZ(float degree) {
-            //TODO
+            this.face = new Face(this.anchor, GeoMath.rotateZFace(this.face, this.anchor));
             return this;
         }
 
