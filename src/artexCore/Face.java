@@ -2,6 +2,7 @@ package artexCore;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Face class create a page with it's vertices
@@ -19,6 +20,12 @@ public class Face {
 
     public Face(ArrayList<Vertex> vertices, Vertex anchor) {
         this.vertices = vertices;
+        this.anchor = anchor;
+    }
+
+    public Face(Vertex anchor, Vertex ... vertex){
+        this.vertices = new ArrayList<Vertex>();
+        Collections.addAll(this.vertices,vertex);
         this.anchor = anchor;
     }
 
