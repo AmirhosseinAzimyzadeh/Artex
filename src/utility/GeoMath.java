@@ -1,5 +1,6 @@
 package utility;
 
+import artexCore.Face;
 import artexCore.Vertex;
 /**
  * Geometric Math class created for mathematical utility in other classes
@@ -23,6 +24,21 @@ public class GeoMath {
             Vertex v = new Vertex(x,y,z);
             result[i] = v;
         }
+        return result;
+    }
+
+    public static Vertex[] rotateXFace(Face face, Vertex anchor){
+        Vertex[] result = new Vertex[face.size()];
+        return result;
+    }
+
+    public static Vertex[] rotateYFace(Face face, Vertex anchor){
+        Vertex[] result = new Vertex[face.size()];
+        return result;
+    }
+
+    public static Vertex[] rotateZFace(Face face, Vertex anchor){
+        Vertex[] result = new Vertex[face.size()];
         return result;
     }
 
