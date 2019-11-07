@@ -2,6 +2,7 @@ package artexIO;
 
 import artexCore.Face;
 import artexCore.Vertex;
+import utility.Statics;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,6 +33,8 @@ public class ArtexWriter {
 
         StringBuilder str = new StringBuilder();
         int vertexCounter = 0;
+
+        str.append(Statics.FILE_SIGNATURE);
 
         for(Face face: faces){
             for(Vertex vertex : face.getVertices()){
