@@ -92,19 +92,19 @@ public class Polygon {
 
         @Override
         public Builder rotateX(float degree) {
-            this.face = new Face(this.anchor, GeoMath.rotateXFace(this.face, this.anchor));
+            this.face = new Face(this.anchor, GeoMath.rotateXFace(this.face, this.anchor, degree));
             return this;
         }
 
         @Override
         public Builder rotateY(float degree) {
-            this.face = new Face(this.anchor, GeoMath.rotateYFace(this.face, this.anchor));
+            this.face = new Face(this.anchor, GeoMath.rotateYFace(this.face, this.anchor, degree));
             return this;
         }
 
         @Override
         public Builder rotateZ(float degree) {
-            this.face = new Face(this.anchor, GeoMath.rotateZFace(this.face, this.anchor));
+            this.face = new Face(this.anchor, GeoMath.rotateZFace(this.face, this.anchor, degree));
             return this;
         }
 

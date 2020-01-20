@@ -10,16 +10,16 @@ public class GeoMath {
 
     public static Vertex[] regularPolygonVertices(int points, float radius){
         Vertex[] result = new Vertex[points];
-        float[] degrees = new float[points];
+        float[] radians = new float[points];
         float degreeAmount = (float) (2*Math.PI/points);
         float sum=0;
-        for(int i = 0 ;i<degrees.length ;i++){
+        for(int i = 0 ;i<radians.length ;i++){
             sum += degreeAmount;
-            degrees[i] = sum;
+            radians[i] = sum;
         }
         for (int i = 0; i < result.length; i++) {
-            float x = (float) (radius* Math.cos( degrees[i]));
-            float y = (float) (radius* Math.sin( degrees[i]));
+            float x = (float) (radius* Math.cos( radians[i]));
+            float y = (float) (radius* Math.sin( radians[i]));
             float z = 0.0f;
             Vertex v = new Vertex(x,y,z);
             result[i] = v;
@@ -27,19 +27,27 @@ public class GeoMath {
         return result;
     }
 
-    public static Vertex[] rotateXFace(Face face, Vertex anchor){
+    public static Vertex[] rotateXFace(Face face, Vertex anchor, float degree){
+        Vertex[] result = new Vertex[face.size()];
+        //TODO
+        for(int i=0; i<result.length; i++){
+            // radius calculation
+            double x = face.getVertex(i).getX();
+            double y = face.getVertex(i).getY() * Math.cos(degree) - face.getVertex(i).getZ() * Math.sin(degree);
+            double z = face.getVertex(i).getY() * Math.cos(degree) + face.getVertex(i).getZ() * Math.sin(degree);
+            Vertex newVertex = new Vertex((float) x, (float) y, (float) z);
+            result[i] = newVertex;
+        }
+        return result;
+    }
+
+    public static Vertex[] rotateYFace(Face face, Vertex anchor, float degree){
         Vertex[] result = new Vertex[face.size()];
         //TODO
         return result;
     }
 
-    public static Vertex[] rotateYFace(Face face, Vertex anchor){
-        Vertex[] result = new Vertex[face.size()];
-        //TODO
-        return result;
-    }
-
-    public static Vertex[] rotateZFace(Face face, Vertex anchor){
+    public static Vertex[] rotateZFace(Face face, Vertex anchor, float degree){
         Vertex[] result = new Vertex[face.size()];
         //TODO
         return result;
