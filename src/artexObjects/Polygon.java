@@ -88,6 +88,7 @@ public class Polygon {
         /**
          * Move whole Polygon with
          * */
+        @Override
         public Builder move(float amountX, float amountY, float amountZ){
             return this.moveX(amountX).moveY(amountY).moveZ(amountZ);
         }

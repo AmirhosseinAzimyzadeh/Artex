@@ -3,15 +3,15 @@ package utility;
 import artexCore.Face;
 import artexCore.Vertex;
 
-import java.awt.event.MouseAdapter;
-
 /**
  * Geometric Math class created for mathematical utility in other classes
  *
  * @author Amirhossein Azimyzadeh
  */
 public class GeoMath {
-
+    /**
+     * Calculate location of each point for regular polygon in 3D space
+     * */
     public static Vertex[] regularPolygonVertices(int points, float radius) {
         Vertex[] result = new Vertex[points];
         float[] radians = new float[points];

@@ -1,5 +1,7 @@
 package artexCore;
 
+import interfaces.Move;
+
 /**
  * vertices are points for 3D vectors
  * vertex id shows line number in final file and use for facing vertices
@@ -8,7 +10,7 @@ package artexCore;
  * @author Amirhossein Azimyzadeh
  * */
 
-public class Vertex {
+public class Vertex implements Move {
     private float x;
     private float y;
     private float z;
@@ -71,6 +73,34 @@ public class Vertex {
      * */
     public void setId(int id) {
         this.id = id;
+    }
+    /**
+     * @return new (copy) Vertex with new X value
+     * */
+    @Override
+    public Vertex moveX(float amount) {
+        return new Vertex(x+amount,y,z);
+    }
+    /**
+     * @return new (copy) Vertex with new Y value
+     * */
+    @Override
+    public Vertex moveY(float amount) {
+        return new Vertex(x,y+amount,z);
+    }
+    /**
+     * @return new (copy) Vertex with new Z value
+     * */
+    @Override
+    public Vertex moveZ(float amount) {
+        return new Vertex(x,y,z+amount);
+    }
+    /**
+     * @return new (copy) Vertex with new values
+     * */
+    @Override
+    public Vertex move(float x, float y, float z){
+        return new Vertex(this.x + x,this.y + y, this.z +z);
     }
 
     @Override

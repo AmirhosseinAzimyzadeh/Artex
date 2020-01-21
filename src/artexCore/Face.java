@@ -1,5 +1,8 @@
 package artexCore;
 
+import utility.Statics;
+
+import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,10 +26,16 @@ public class Face {
         this.anchor = anchor;
     }
 
-    public Face(Vertex anchor, Vertex ... vertex){
-        this.vertices = new ArrayList<>();
-        Collections.addAll(this.vertices,vertex);
+    public Face(Vertex anchor, Vertex ... vertices){
+        this.vertices = new ArrayList<>(vertices.length);
+        Collections.addAll(this.vertices,vertices);
         this.anchor = anchor;
+    }
+
+    public Face(Vertex ...vertices){
+        this.vertices = new ArrayList<>(vertices.length);
+        Collections.addAll(this.vertices, vertices);
+        this.anchor = Statics.originVertex();
     }
 
     public Face(ArrayList<Vertex> vertices) {
