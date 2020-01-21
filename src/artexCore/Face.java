@@ -24,7 +24,7 @@ public class Face {
     }
 
     public Face(Vertex anchor, Vertex ... vertex){
-        this.vertices = new ArrayList<Vertex>();
+        this.vertices = new ArrayList<>();
         Collections.addAll(this.vertices,vertex);
         this.anchor = anchor;
     }
@@ -47,7 +47,9 @@ public class Face {
         else
             return null;
     }
-
+    /**
+     * @return number of vertices in the face
+     * */
     public int size(){
         return vertices.size();
     }

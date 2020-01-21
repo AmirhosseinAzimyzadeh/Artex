@@ -42,7 +42,7 @@ public class Polygon {
 
 
         public Builder(int sides, float radius){
-            this.anchor = Statics.ORIGIN_VERTEX;
+            this.anchor = Statics.originVertex();
             this.sides = sides;
             this.radius = radius;
             this.face = buildFace();

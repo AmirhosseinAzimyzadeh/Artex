@@ -1,6 +1,7 @@
 package artexCore;
 
 /**
+ * vertices are points for 3D vectors
  * vertex id shows line number in final file and use for facing vertices
  * @see Face
  *
