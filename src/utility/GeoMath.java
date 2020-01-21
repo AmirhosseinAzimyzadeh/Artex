@@ -3,6 +3,8 @@ package utility;
 import artexCore.Face;
 import artexCore.Vertex;
 
+import java.awt.event.MouseAdapter;
+
 /**
  * Geometric Math class created for mathematical utility in other classes
  *
@@ -29,26 +31,39 @@ public class GeoMath {
         return result;
     }
 
-    public static Vertex[] rotateXFace(Face face, Vertex anchor, float degree) {
+    public static Vertex[] rotateXFace(Face face, float degree) {
         Vertex[] result = new Vertex[face.size()];
         for (int i = 0; i < result.length; i++) {
-            double x = face.getVertex(i).getX();
+
             double y = face.getVertex(i).getY() * Math.cos(degree) - face.getVertex(i).getZ() * Math.sin(degree);
             double z = face.getVertex(i).getY() * Math.sin(degree) - face.getVertex(i).getZ() * Math.cos(degree);
-            result[i] = new Vertex((float) x, (float) y, (float) z);
+
+            result[i] = new Vertex(face.getVertex(i).getX(), (float) y, (float) z);
         }
         return result;
     }
 
-    public static Vertex[] rotateYFace(Face face, Vertex anchor, float degree) {
+    public static Vertex[] rotateYFace(Face face, float degree) {
         Vertex[] result = new Vertex[face.size()];
-        //TODO
+        for (int i = 0; i < result.length; i++) {
+
+            double x = face.getVertex(i).getX() * Math.cos(degree) + face.getVertex(i).getZ() * Math.sin(degree);
+            double z = -face.getVertex(i).getX() * Math.sin(degree) + face.getVertex(i).getZ() * Math.cos(degree);
+
+            result[i] = new Vertex((float) x, face.getVertex(i).getY(), (float) z);
+        }
         return result;
     }
 
-    public static Vertex[] rotateZFace(Face face, Vertex anchor, float degree) {
+    public static Vertex[] rotateZFace(Face face, float degree) {
         Vertex[] result = new Vertex[face.size()];
-        //TODO
+        for (int i = 0; i < result.length; i++) {
+
+            double x = face.getVertex(i).getX() * Math.cos(degree) - face.getVertex(i).getY() * Math.sin(degree);
+            double y = face.getVertex(i).getX() * Math.sin(degree) + face.getVertex(i).getY() * Math.cos(degree);
+
+            result[i] = new Vertex((float) x, (float) y, face.getVertex(i).getZ());
+        }
         return result;
     }
 
