@@ -53,7 +53,10 @@ public class ComplexObject {
     public void linearCopyZ(Face face, int numberOfCopies, float length) {
         Collections.addAll(this.faces, linearCopy(face, numberOfCopies, length,Axis.Z));
     }
-
+    /**
+     * handle linear Copy of faces in ComplexObject
+     * @param axis identify axis for copy
+     * */
     private Face[] linearCopy(Face face, int numberOfCopies, float length, Axis axis) {
         float stepAmount = length / numberOfCopies;
         Face[] copiedFaces = new Face[numberOfCopies];
