@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Polygon class creat simple 2D shape (regular-polygon)
+ * Polygon class create a simple 2D shape (regular-polygon)
  * @see GeoMath
- * you can also creat circle by increasing "side" value
+ * you can also create circle by increasing "side" value in "Builder" Class
  *
  * @author Amirhossein Azimyzadeh
  * */
@@ -85,26 +85,37 @@ public class Polygon {
             this.anchor.addZ(amount);
             return this;
         }
-
+        /**
+         * Move whole Polygon with
+         * */
         public Builder move(float amountX, float amountY, float amountZ){
             return this.moveX(amountX).moveY(amountY).moveZ(amountZ);
         }
-
+        /**
+         * Rotate Polygon around X axis
+         * @param amount unit is Radian
+         * */
         @Override
-        public Builder rotateX(float degree) {
-            this.face = new Face(this.anchor, GeoMath.rotateXFace(this.face, degree));
+        public Builder rotateX(float amount) {
+            this.face = new Face(this.anchor, GeoMath.rotateXFace(this.face, amount));
             return this;
         }
-
+        /**
+         * Rotate Polygon around Y axis
+         * @param amount unit is Radian
+         * */
         @Override
-        public Builder rotateY(float degree) {
-            this.face = new Face(this.anchor, GeoMath.rotateYFace(this.face, degree));
+        public Builder rotateY(float amount) {
+            this.face = new Face(this.anchor, GeoMath.rotateYFace(this.face, amount));
             return this;
         }
-
+        /**
+         * Rotate Polygon around Z axis
+         * @param amount unit is Radian
+         * */
         @Override
-        public Builder rotateZ(float degree) {
-            this.face = new Face(this.anchor, GeoMath.rotateZFace(this.face, degree));
+        public Builder rotateZ(float amount) {
+            this.face = new Face(this.anchor, GeoMath.rotateZFace(this.face, amount));
             return this;
         }
 
