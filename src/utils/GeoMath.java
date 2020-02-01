@@ -1,4 +1,4 @@
-package utility;
+package utils;
 
 import artexCore.Face;
 import artexCore.Vertex;

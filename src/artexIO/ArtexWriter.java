@@ -2,20 +2,38 @@ package artexIO;
 
 import artexCore.Face;
 import artexCore.Vertex;
-import utility.Statics;
+import artexObjects.ComplexObject;
+import artexObjects.Polygon;
+import utils.Statics;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArtexWriter {
 
     private String fileName;
     private Face[] faces;
-    static final String FILE_EXTENSION = ".obj";
+    private static final String FILE_EXTENSION = ".obj";
 
     public ArtexWriter(String fileName, Face... faces){
         this.faces = faces;
+        this.fileName = fileName;
+    }
+
+    public ArtexWriter(String fileName, ComplexObject complexObject){
+        this.faces = complexObject.getFacesInArray();
+        this.fileName = fileName;
+    }
+
+    public ArtexWriter(String fileName, Polygon... polygons){
+        List<Face> faces = new ArrayList<>(polygons.length);
+        faces = Arrays.stream(polygons).map(Polygon::getFace).collect(Collectors.toList());
+        this.faces = faceListToArray(faces);
         this.fileName = fileName;
     }
 
@@ -48,5 +66,13 @@ public class ArtexWriter {
             vertexCounter +=face.size();
         }
         return str.toString();
+    }
+
+    private Face[] faceListToArray(List<Face> faces){
+        Face[] result = new Face[faces.size()];
+        for (int i = 0; i < faces.size(); i++) {
+            result[i] = faces.get(i);
+        }
+        return result;
     }
 }

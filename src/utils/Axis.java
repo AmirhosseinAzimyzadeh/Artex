@@ -1,4 +1,4 @@
-package utility;
+package utils;
 /**
  * Axis for identifying axis
  * @author Amirhossein

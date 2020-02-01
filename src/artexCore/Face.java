@@ -1,10 +1,8 @@
 package artexCore;
 
-import utility.Statics;
+import utils.Statics;
 
-import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**

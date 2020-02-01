@@ -2,8 +2,8 @@ package artexObjects;
 
 import artexCore.Face;
 import artexCore.Vertex;
-import utility.GeoMath;
-import utility.Statics;
+import utils.GeoMath;
+import utils.Statics;
 import interfaces.Move;
 import interfaces.Rotate;
 import java.util.ArrayList;
