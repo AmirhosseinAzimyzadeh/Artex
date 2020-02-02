@@ -67,4 +67,38 @@ public class GeoMath {
         return result;
     }
 
+    public static Vertex[] copyX(float distance, Vertex... vertices){
+        return copyVertices(Axis.X, distance, vertices);
+    }
+    public static Vertex[] copyY(float distance, Vertex... vertices){
+        return copyVertices(Axis.Y, distance, vertices);
+    }
+    public static Vertex[] copyZ(float distance, Vertex... vertices){
+        return copyVertices(Axis.Z, distance,vertices);
+    }
+
+    private static Vertex[] copyVertices(Axis axis, float distance, Vertex... vertices){
+        Vertex[] result = new Vertex[vertices.length];
+        for (int i = 0; i < result.length; i++) {
+            switch (axis){
+                case X:
+                    result[i] = new Vertex(vertices[i].getX() + distance,
+                            vertices[i].getY(),
+                            vertices[i].getZ());
+                    break;
+                case Y:
+                    result[i] = new Vertex(vertices[i].getX(),
+                            vertices[i].getY() + distance,
+                            vertices[i].getZ());
+                    break;
+                case Z:
+                    result[i] = new Vertex(vertices[i].getX(),
+                            vertices[i].getY(),
+                            vertices[i].getZ() + distance);
+                    break;
+            }
+        }
+        return result;
+    }
+
 }

@@ -48,6 +48,14 @@ public class Face {
         return vertices;
     }
 
+    public Vertex[] getVerticesInArray() {
+        Vertex[] result = new Vertex[this.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = vertices.get(i);
+        }
+        return result;
+    }
+
     public Vertex getVertex(int index){
         if(vertices.size()!=0)
             return vertices.get(index);

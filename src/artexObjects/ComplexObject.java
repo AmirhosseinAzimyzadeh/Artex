@@ -11,7 +11,7 @@ import java.util.Collections;
 /**
  * ComplexObject is an object with multiple faces
  *
- * @author Amirhossein
+ * @author Amirhossein Azimyzadeh
  */
 public class ComplexObject {
     private ArrayList<Face> faces;

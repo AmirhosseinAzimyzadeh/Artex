@@ -13,7 +13,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * @author Amirhossein Azimyzadeh
+ *
+ * ArtexWriter implemented for writng faces in to files with extension {@code .obj}
+ * */
 public class ArtexWriter {
 
     private String fileName;
@@ -24,6 +28,11 @@ public class ArtexWriter {
         this.faces = faces;
         this.fileName = fileName;
     }
+
+/**
+ * all second parameters in Constructors will convert to faces
+ * e.g : {@code this.faces -> complexObject.getFaceInArray() }
+ * */
 
     public ArtexWriter(String fileName, ComplexObject complexObject){
         this.faces = complexObject.getFacesInArray();
