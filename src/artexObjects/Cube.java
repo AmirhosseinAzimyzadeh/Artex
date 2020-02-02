@@ -10,7 +10,6 @@ public class Cube extends Cylindrical {
     }
 
     private static Face createBase(float width, float length) {
-        //TODO : complete the cube
         Vertex[] baseVertices = new Vertex[4];
         baseVertices[0] = new Vertex(width / 2, length / 2, 0);
         baseVertices[1] = new Vertex(width / 2, -(length / 2), 0);
