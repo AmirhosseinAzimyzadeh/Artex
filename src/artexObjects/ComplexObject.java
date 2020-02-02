@@ -45,6 +45,10 @@ public class ComplexObject {
         return faces;
     }
 
+    public int size(){
+        return faces.size();
+    }
+
     public void linearCopyX(Face face, int numberOfCopies, float length) {
         Collections.addAll(this.faces, linearCopy(face, numberOfCopies, length, Axis.X));
     }

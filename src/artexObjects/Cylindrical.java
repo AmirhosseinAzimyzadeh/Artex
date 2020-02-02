@@ -15,7 +15,6 @@ import java.util.List;
  * @author Amirhossein Azimyzadeh
  * */
 public class Cylindrical {
-    // primitive data
     private float height;
     private Face base;
     private Face[] AllFaces;
