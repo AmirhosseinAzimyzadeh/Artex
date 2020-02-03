@@ -5,4 +5,8 @@ Under Development:
 
 ✅ 2D Polygon Completed
 
+✅ Cylinderical Completed
+
+✅ Cube Completed
+
 ⏳ Developing ComplexObject  
