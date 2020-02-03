@@ -9,4 +9,8 @@ Under Development:
 
 ✅ Cube Completed
 
-⏳ Developing ComplexObject  
+⏳ Developing ComplexObject  ...
+
+🔁 Sphere 
+  
+🔁 Cone 
