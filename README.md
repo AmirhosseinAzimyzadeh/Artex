@@ -5,4 +5,12 @@ Under Development:
 
 ✅ 2D Polygon Completed
 
-⏳ Developing ComplexObject  
+✅ Cylinderical Completed
+
+✅ Cube Completed
+
+⏳ Developing ComplexObject  ...
+
+🔁 Sphere 
+  
+🔁 Cone 
