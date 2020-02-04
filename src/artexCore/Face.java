@@ -1,6 +1,6 @@
 package artexCore;
 
-import utils.Statics;
+import utils.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +33,7 @@ public class Face {
     public Face(Vertex ...vertices){
         this.vertices = new ArrayList<>(vertices.length);
         Collections.addAll(this.vertices, vertices);
-        this.anchor = Statics.originVertex();
+        this.anchor = Util.originVertex();
     }
 
     public Face(ArrayList<Vertex> vertices) {

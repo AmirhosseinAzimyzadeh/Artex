@@ -2,6 +2,7 @@ package artexObjects;
 
 import artexCore.Face;
 import artexCore.Vertex;
+import interfaces.Move;
 import utils.Axis;
 import utils.GeoMath;
 
@@ -13,7 +14,7 @@ import java.util.Collections;
  *
  * @author Amirhossein Azimyzadeh
  */
-public class ComplexObject {
+public class ComplexObject implements Move<ComplexObject> {
     private ArrayList<Face> faces;
 
     public ComplexObject(Face... faces) {
@@ -45,91 +46,58 @@ public class ComplexObject {
         return faces;
     }
 
-    public int size(){
+    public int size() {
         return faces.size();
     }
 
     public void linearCopyX(Face face, int numberOfCopies, float length) {
-        Collections.addAll(this.faces, linearCopy(face, numberOfCopies, length, Axis.X));
+        Collections.addAll(this.faces, GeoMath.linearCopy(face, numberOfCopies, length, Axis.X));
     }
 
     public void linearCopyY(Face face, int numberOfCopies, float length) {
-        Collections.addAll(this.faces, linearCopy(face, numberOfCopies, length, Axis.Y));
+        Collections.addAll(this.faces, GeoMath.linearCopy(face, numberOfCopies, length, Axis.Y));
     }
 
     public void linearCopyZ(Face face, int numberOfCopies, float length) {
-        Collections.addAll(this.faces, linearCopy(face, numberOfCopies, length, Axis.Z));
+        Collections.addAll(this.faces, GeoMath.linearCopy(face, numberOfCopies, length, Axis.Z));
     }
 
     public void rotationalCopyX(Face face, int numberOfCopies) {
-        Collections.addAll(this.faces, rotationalCopy(face, numberOfCopies, Axis.X));
+        Collections.addAll(this.faces, GeoMath.rotationalCopy(face, numberOfCopies, Axis.X));
     }
 
     public void rotationalCopyY(Face face, int numberOfCopies) {
-        Collections.addAll(this.faces, rotationalCopy(face, numberOfCopies, Axis.Y));
+        Collections.addAll(this.faces, GeoMath.rotationalCopy(face, numberOfCopies, Axis.Y));
     }
 
     public void rotationalCopyZ(Face face, int numberOfCopies) {
-        Collections.addAll(this.faces, rotationalCopy(face, numberOfCopies, Axis.Z));
-    }
-    /**
-     * handle rotational Copy of faces in ComplexObject
-     *
-     * @param axis identify axis for copy
-     */
-    private Face[] rotationalCopy(Face face, int numberOfCopies, Axis axis) {
-        Face[] copiedFaces = new Face[numberOfCopies];
-        float stepAmount = (float) (2 * Math.PI / numberOfCopies);
-        float angle = stepAmount;
-
-        for (int i = 0; i < numberOfCopies; i++) {
-            switch (axis) {
-                case X:
-                    copiedFaces[i] = new Face(GeoMath.rotateXFace(face, angle));
-                    break;
-                case Y:
-                    copiedFaces[i] = new Face(GeoMath.rotateYFace(face, angle));
-                    break;
-                case Z:
-                    copiedFaces[i] = new Face(GeoMath.rotateZFace(face, angle));
-                    break;
-            }
-            angle += stepAmount;
-        }
-
-        return copiedFaces;
+        Collections.addAll(this.faces, GeoMath.rotationalCopy(face, numberOfCopies, Axis.Z));
     }
 
-    /**
-     * handle linear Copy of faces in ComplexObject
-     *
-     * @param axis identify axis for copy
-     */
-    private Face[] linearCopy(Face face, int numberOfCopies, float length, Axis axis) {
-        float stepAmount = length / numberOfCopies;
-        Face[] copiedFaces = new Face[numberOfCopies];
+    @Override
+    public ComplexObject moveX(float amount) {
+        return this.move(amount, 0, 0);
+    }
 
-        for (int i = 0; i < numberOfCopies; i++) {
-            Vertex[] vertices = new Vertex[face.size()];
-            for (int j = 0; j < face.size(); j++) {
-                switch (axis) {
-                    case X:
-                        vertices[j] = (i != 0) ? copiedFaces[i - 1].getVertex(j).moveX(stepAmount)
-                                : face.getVertex(j).moveX(stepAmount);
-                        break;
-                    case Y:
-                        vertices[j] = (i != 0) ? copiedFaces[i - 1].getVertex(j).moveY(stepAmount)
-                                : face.getVertex(j).moveY(stepAmount);
-                        break;
-                    case Z:
-                        vertices[j] = (i != 0) ? copiedFaces[i - 1].getVertex(j).moveZ(stepAmount)
-                                : face.getVertex(j).moveZ(stepAmount);
-                        break;
-                }
+    @Override
+    public ComplexObject moveY(float amount) {
+        return this.move(0, amount, 0);
+    }
+
+    @Override
+    public ComplexObject moveZ(float amount) {
+        return this.move(0, 0, amount);
+    }
+
+    @Override
+    public ComplexObject move(float x, float y, float z) {
+        for (Face face : faces) {
+            for (Vertex vertex : face.getVertices()) {
+                vertex.addX(x);
+                vertex.addY(y);
+                vertex.addZ(z);
             }
-            copiedFaces[i] = new Face(vertices);
         }
-
-        return copiedFaces;
+        return this;
     }
 }
