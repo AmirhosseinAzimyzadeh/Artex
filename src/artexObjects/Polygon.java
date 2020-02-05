@@ -102,7 +102,7 @@ public class Polygon {
          */
         @Override
         public Builder rotateX(float amount) {
-            this.face = new Face(this.anchor, GeoMath.rotateXFace(this.face, amount));
+            this.face = new Face(this.anchor, GeoMath.rotateX(amount, this.face.getVerticesInArray()));
             return this;
         }
 
@@ -113,7 +113,7 @@ public class Polygon {
          */
         @Override
         public Builder rotateY(float amount) {
-            this.face = new Face(this.anchor, GeoMath.rotateYFace(this.face, amount));
+            this.face = new Face(this.anchor, GeoMath.rotateY(amount, this.face.getVerticesInArray()));
             return this;
         }
 
@@ -124,7 +124,12 @@ public class Polygon {
          */
         @Override
         public Builder rotateZ(float amount) {
-            this.face = new Face(this.anchor, GeoMath.rotateZFace(this.face, amount));
+            this.face = new Face(this.anchor, GeoMath.rotateZ(amount, this.face.getVerticesInArray()));
+            return this;
+        }
+
+        @Override
+        public Builder rotate(float X, float Y, float Z) {
             return this;
         }
 
