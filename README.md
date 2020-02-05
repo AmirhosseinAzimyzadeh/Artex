@@ -11,6 +11,6 @@ Under Development:
 
 ⏳ Developing ComplexObject  ...
 
-🔁 Sphere 
+🔁 Pyramid 
   
-🔁 Cone 
+🔁 sphere 
