@@ -31,40 +31,47 @@ public class GeoMath {
         return result;
     }
 
-    public static Vertex[] rotateXFace(Face face, float degree) {
-        Vertex[] result = new Vertex[face.size()];
+    public static Vertex[] rotateX(float degree, Vertex... vertices) {
+        Vertex[] result = new Vertex[vertices.length];
         for (int i = 0; i < result.length; i++) {
 
-            double y = face.getVertex(i).getY() * Math.cos(degree) - face.getVertex(i).getZ() * Math.sin(degree);
-            double z = face.getVertex(i).getY() * Math.sin(degree) - face.getVertex(i).getZ() * Math.cos(degree);
+            double y = vertices[i].getY() * Math.cos(degree) - vertices[i].getZ() * Math.sin(degree);
+            double z = vertices[i].getY() * Math.sin(degree) - vertices[i].getZ() * Math.cos(degree);
 
-            result[i] = new Vertex(face.getVertex(i).getX(), (float) y, (float) z);
+            result[i] = new Vertex(vertices[i].getX(), (float) y, (float) z);
         }
         return result;
     }
 
-    public static Vertex[] rotateYFace(Face face, float degree) {
-        Vertex[] result = new Vertex[face.size()];
-        for (int i = 0; i < result.length; i++) {
+    public static Vertex[] rotateY(float degree, Vertex... vertices) {
+        Vertex[] rotatedVertices = new Vertex[vertices.length];
+        for (int i = 0; i < rotatedVertices.length; i++) {
 
-            double x = face.getVertex(i).getX() * Math.cos(degree) + face.getVertex(i).getZ() * Math.sin(degree);
-            double z = -face.getVertex(i).getX() * Math.sin(degree) + face.getVertex(i).getZ() * Math.cos(degree);
+            double x = vertices[i].getX() * Math.cos(degree) + vertices[i].getZ() * Math.sin(degree);
+            double z = -vertices[i].getX() * Math.sin(degree) + vertices[i].getZ() * Math.cos(degree);
 
-            result[i] = new Vertex((float) x, face.getVertex(i).getY(), (float) z);
+            rotatedVertices[i] = new Vertex((float) x, vertices[i].getY(), (float) z);
         }
-        return result;
+        return rotatedVertices;
     }
 
-    public static Vertex[] rotateZFace(Face face, float degree) {
-        Vertex[] result = new Vertex[face.size()];
-        for (int i = 0; i < result.length; i++) {
+    public static Vertex[] rotateZ(float degree, Vertex... vertices) {
+        Vertex[] rotatedVertices = new Vertex[vertices.length];
+        for (int i = 0; i < rotatedVertices.length; i++) {
 
-            double x = face.getVertex(i).getX() * Math.cos(degree) - face.getVertex(i).getY() * Math.sin(degree);
-            double y = face.getVertex(i).getX() * Math.sin(degree) + face.getVertex(i).getY() * Math.cos(degree);
+            double x = vertices[i].getX() * Math.cos(degree) - vertices[i].getY() * Math.sin(degree);
+            double y = vertices[i].getX() * Math.sin(degree) + vertices[i].getY() * Math.cos(degree);
 
-            result[i] = new Vertex((float) x, (float) y, face.getVertex(i).getZ());
+            rotatedVertices[i] = new Vertex((float) x, (float) y, vertices[i].getZ());
         }
-        return result;
+        return rotatedVertices;
+    }
+
+    public static Vertex[] rotate(float x, float y, float z, Vertex... vertices) {
+        Vertex[] rotatedVertices = rotateX(x, vertices);
+        rotatedVertices = rotateY(y, rotatedVertices);
+        rotatedVertices = rotateZ(z, rotatedVertices);
+        return rotatedVertices;
     }
 
     public static Vertex[] copyX(float distance, Vertex... vertices) {
@@ -131,13 +138,13 @@ public class GeoMath {
         for (int i = 0; i < numberOfCopies; i++) {
             switch (axis) {
                 case X:
-                    copiedFaces[i] = new Face(GeoMath.rotateXFace(face, angle));
+                    copiedFaces[i] = new Face(GeoMath.rotateX(angle, face.getVerticesInArray()));
                     break;
                 case Y:
-                    copiedFaces[i] = new Face(GeoMath.rotateYFace(face, angle));
+                    copiedFaces[i] = new Face(GeoMath.rotateY(angle, face.getVerticesInArray()));
                     break;
                 case Z:
-                    copiedFaces[i] = new Face(GeoMath.rotateZFace(face, angle));
+                    copiedFaces[i] = new Face(GeoMath.rotateZ(angle, face.getVerticesInArray()));
                     break;
             }
             angle += stepAmount;
