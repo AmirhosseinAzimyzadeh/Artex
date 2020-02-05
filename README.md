@@ -5,12 +5,12 @@ Under Development:
 
 ✅ 2D Polygon Completed
 
-✅ Cylinderical Completed
+✅ Cylindrical Completed
 
 ✅ Cube Completed
 
+✅ Pyramid
+ 
 ⏳ Developing ComplexObject  ...
 
-🔁 Pyramid 
-  
 🔁 sphere 
