@@ -3,6 +3,7 @@ package artexObjects;
 import artexCore.Face;
 import artexCore.Vertex;
 import interfaces.Move;
+import interfaces.Rotate;
 import utils.Axis;
 import utils.GeoMath;
 
@@ -14,7 +15,7 @@ import java.util.Collections;
  *
  * @author Amirhossein Azimyzadeh
  */
-public class ComplexObject implements Move<ComplexObject> {
+public class ComplexObject implements Move<ComplexObject>, Rotate<ComplexObject> {
     private ArrayList<Face> faces;
 
     public ComplexObject(Face... faces) {
@@ -97,6 +98,30 @@ public class ComplexObject implements Move<ComplexObject> {
                 vertex.addY(y);
                 vertex.addZ(z);
             }
+        }
+        return this;
+    }
+
+    @Override
+    public ComplexObject rotateX(float amount) {
+        return rotate(amount, 0, 0);
+    }
+
+    @Override
+    public ComplexObject rotateY(float amount) {
+        return rotate(0, amount, 0);
+    }
+
+    @Override
+    public ComplexObject rotateZ(float amount) {
+        return rotate(0, 0, amount);
+    }
+
+    @Override
+    public ComplexObject rotate(float x, float y, float z) {
+        for (int i = 0; i < this.size(); i++) {
+            Face removedFace = faces.remove(i);
+            faces.add(i, new Face(GeoMath.rotate(x, y, z, removedFace.getVerticesInArray())));
         }
         return this;
     }
