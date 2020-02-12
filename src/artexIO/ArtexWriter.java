@@ -23,11 +23,21 @@ public class ArtexWriter {
 
     private static final String FILE_EXTENSION = ".obj";
     private String fileName;
+    private File file;
     private Face[] faces;
 
     public ArtexWriter(String fileName, Face... faces) {
         this.faces = faces;
         this.fileName = fileName;
+    }
+
+    public ArtexWriter(File dir, String fileName, Face... faces){
+        if(!dir.isDirectory()){
+            throw new RuntimeException("dir is Not a directory");
+        }
+        this.fileName = fileName;
+        this.faces = faces;
+        this.file = new File(dir.getAbsolutePath()+"\\"+fileName+FILE_EXTENSION);
     }
 
     /**
@@ -49,8 +59,9 @@ public class ArtexWriter {
 
     public void write() throws IOException {
         String fileContent = prepareString();
-        File file = new File(fileName + FILE_EXTENSION);
-        FileOutputStream fos = new FileOutputStream(file);
+        if(this.file == null)
+            this.file = new File(fileName + FILE_EXTENSION);
+        FileOutputStream fos = new FileOutputStream(this.file);
         fos.write(fileContent.getBytes());
         fos.close();
     }
