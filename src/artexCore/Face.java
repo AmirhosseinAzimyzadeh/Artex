@@ -89,4 +89,11 @@ public class Face {
         this.name = name;
     }
 
+    @Override
+    public String toString(){
+        return "f \nname:"+this.getName()+
+                " \nsize:"+this.size()+
+                " \nAnchor:" +
+                this.anchor.toString() +"\n";
+    }
 }
