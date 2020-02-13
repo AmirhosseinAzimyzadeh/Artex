@@ -2,6 +2,8 @@ package artexCore;
 
 import interfaces.Move;
 
+import java.util.Objects;
+
 /**
  * vertices are points for 3D vectors
  * vertex id shows line number in final file and use for facing vertices
@@ -106,5 +108,21 @@ public class Vertex implements Move {
     @Override
     public String toString() {
         return "v "+x+" "+y+" "+z;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vertex)) return false;
+        Vertex vertex = (Vertex) o;
+        return Float.compare(vertex.x, x) == 0 &&
+                Float.compare(vertex.y, y) == 0 &&
+                Float.compare(vertex.z, z) == 0 &&
+                id == vertex.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z, id);
     }
 }
