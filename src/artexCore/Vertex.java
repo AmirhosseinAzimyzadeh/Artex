@@ -117,12 +117,11 @@ public class Vertex implements Move {
         Vertex vertex = (Vertex) o;
         return Float.compare(vertex.x, x) == 0 &&
                 Float.compare(vertex.y, y) == 0 &&
-                Float.compare(vertex.z, z) == 0 &&
-                id == vertex.id;
+                Float.compare(vertex.z, z) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, z, id);
+        return Objects.hash(x, y, z);
     }
 }
