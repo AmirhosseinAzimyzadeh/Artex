@@ -5,6 +5,7 @@ import artexCore.Vertex;
 import artexObjects.ComplexObject;
 import artexObjects.Polygon;
 import utils.Util;
+import utils.VertexContainer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,10 +26,15 @@ public class ArtexWriter {
     private String fileName;
     private File file;
     private Face[] faces;
+    private boolean uniqueWritingMethod = false;
 
     public ArtexWriter(String fileName, Face... faces) {
         this.faces = faces;
         this.fileName = fileName;
+    }
+
+    public void setUniqueWritingMethod(boolean isUniqueWritingMethod){
+        this.uniqueWritingMethod = isUniqueWritingMethod;
     }
 
     public ArtexWriter(File dir, String fileName, Face... faces){
@@ -58,7 +64,12 @@ public class ArtexWriter {
     }
 
     public void write() throws IOException {
-        String fileContent = prepareString();
+        String fileContent;
+        if(this.uniqueWritingMethod)
+            fileContent = prepareStringUnique();
+        else
+            fileContent = prepareString();
+
         if(this.file == null)
             this.file = new File(fileName + FILE_EXTENSION);
         FileOutputStream fos = new FileOutputStream(this.file);
@@ -87,6 +98,47 @@ public class ArtexWriter {
             vertexCounter += face.size();
         }
         return str.toString();
+    }
+
+    // fix issue in writing
+    private String prepareStringUnique(){
+        if(this.faces == null || this.faces.length == 0)
+            return Util.FILE_SIGNATURE;
+
+        // prepare vertex for writing (id)
+        VertexContainer vertices = new VertexContainer();
+        int idCounter = 0;
+        for (Face face : this.faces) {
+            for (int j = 0; j < face.size(); j++) {
+                Vertex currentVertex = face.getVertex(j);
+                Vertex fromContainer = vertices.contain(currentVertex);
+                if(fromContainer == null){
+                    idCounter++;
+                    currentVertex.setId(idCounter);
+                    vertices.add(currentVertex);
+                }else {
+                    currentVertex.setId(fromContainer.getId());
+                }
+            }
+        }
+
+        StringBuilder str = new StringBuilder();
+        str.append(Util.FILE_SIGNATURE);
+
+        Vertex[] allVertices = vertices.getVertices();
+        for (Vertex vertex: allVertices){
+            str.append(vertex.toString()).append("\n");
+        }
+
+        for(Face face: this.faces){
+            str.append("f ");
+            for(int i=0; i<face.size();i++)
+                str.append(face.getVertex(i).getId()).append(" ");
+            str.append("\n");
+        }
+
+        return str.toString();
+
     }
 
     private Face[] faceListToArray(List<Face> faces) {
