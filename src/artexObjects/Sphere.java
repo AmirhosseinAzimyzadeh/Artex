@@ -13,6 +13,7 @@ import java.util.Collections;
  * @author Amirhossein Azimyzadeh
  * @see Face
  * @see utils.GeoMath
+ * @see Polygon
  */
 public class Sphere {
     private Face[] faces;
